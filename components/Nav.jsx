@@ -22,7 +22,7 @@ const Nav = () => {
     <nav className='flex-between w-full mb-16 pt-3 '>
       <Link href='/' className='flex gap-2 flex-center'>
         <Image src='/assets/images/logo.svg' width='30' height='30' className='object-contain' alt='logo' />
-        <p className='logo_text'>Proptpedia</p>
+        <p className='logo_text'>Promptpedia</p>
       </Link>
      {/* Desktop Navigation */}
       <div className="sm:flex hidden">
@@ -113,4 +113,4 @@ const Nav = () => {
   );
 };
 
-export default      Nav;
+export default  Nav;
