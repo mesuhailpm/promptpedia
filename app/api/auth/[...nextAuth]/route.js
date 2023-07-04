@@ -1,5 +1,8 @@
 import GoogleProvider from 'next-auth/providers/google'
 import NextAuthHandler from 'next-auth'
+import connectToDb from '@utils/database'
+import User from '@models/User'
+
 
 const handler = NextAuthHandler (
     {
@@ -11,6 +14,16 @@ const handler = NextAuthHandler (
         ],
         callbacks: {
             async signIn ({profile}){
+
+                try {
+                    connectToDb()
+                    User.find({email: profile.email})
+
+
+                } catch (error) {
+                    alert(error)
+                }
+
 
 
                 },

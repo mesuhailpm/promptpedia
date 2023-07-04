@@ -5,6 +5,9 @@ import { useState,useEffect } from 'react';
 import{ signIn, signOut, useSession, getProviders} from 'next-auth/react'
 
 const Nav = () => {
+
+  const { data: session } = useSession()
+
   const [isUserLoggedin, setIsUserLoggedin] = useState(false)
   const [propviders, setProviders] = useState(null)
   const [showDropdown, setShowDropdown] = useState (false)
