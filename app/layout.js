@@ -4,7 +4,7 @@ import Provider from '@components/Provider'
 
 export const metadata = {
   title: 'Promtpedia',
-  description: 'Discover and share AI promts',
+  description: 'Discover and share AI prompts',
 }
 
 export default function RootLayout({ children }) {
