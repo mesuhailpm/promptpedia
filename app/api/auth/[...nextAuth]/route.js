@@ -2,7 +2,7 @@ import GoogleProvider from 'next-auth/providers/google'
 import NextAuthHandler from 'next-auth'
 
 const handler = NextAuthHandler (
-    { 
+    {
         providers: [
             GoogleProvider({
                 clientId:'',
@@ -10,16 +10,16 @@ const handler = NextAuthHandler (
             })
         ],
         callbacks: {
-            async signIn ({email}){
-                
-            
+            async signIn ({profile}){
+
+
                 },
             async session ({session}){
                 return session;
                 }}
-                
+
                 },
 
 )
 
-export default handler
+export { handler as GET, handler as POST }
