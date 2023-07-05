@@ -13,18 +13,11 @@ const CreatePage = () => {
         prompt:'',
         tag:''
     })
-    console.log(form)
 
-    console.log(session,' is session')
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
             setSubmitting(true);
-            console.log(JSON.stringify({
-                creator: session?.user.id,
-                prompt: form.prompt,
-                tag: form.tag,
-              }));
               
             const response = await fetch('/api/prompt/create', {
                 method: "POST",

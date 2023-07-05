@@ -21,7 +21,7 @@ const handler = NextAuthHandler (
                     return session;  
 
                 } catch (error) {
-                   console.log('session is not updataed, error: ',error) 
+                   console.log('session is not updated, error: ',error) 
                     
                 }
             },
@@ -29,10 +29,8 @@ const handler = NextAuthHandler (
     
             async signIn ({user,account,profile}){     //not containig credential property, also 'profile' has no email but 'user' has        
                 try {
-                    console.log(user.email, ' is the email trying to be signed in');
                     connectToDb()
                     const userAlreadyExists = await User.findOne({email: user.email})
-                    if (userAlreadyExists) console.log(userAlreadyExists, 'is the user already there')
                     
                     if (!userAlreadyExists) {
                         await User.create({

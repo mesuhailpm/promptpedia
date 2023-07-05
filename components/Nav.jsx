@@ -8,7 +8,6 @@ const Nav = () => {
 
   const { data: session } = useSession()
 
-  console.log(session,' is session')
   
   const [isUserLoggedin, setIsUserLoggedin] = useState(false)
   const [providers, setProviders] = useState(null)
@@ -17,14 +16,12 @@ const Nav = () => {
   useEffect(()=>{
     const setNewProviders = async () => {
       const response = await getProviders();
-      console.log('response ', response)
       setProviders(response)
     }
     setNewProviders();
     
   }, [])
   
-  console.log(providers,' is providers')
   return (
     <nav className='flex-between w-full mb-16 pt-3 '>
       <Link href='/' className='flex gap-2 flex-center'>
