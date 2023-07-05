@@ -8,19 +8,23 @@ const Nav = () => {
 
   const { data: session } = useSession()
 
+  console.log(session,' is session')
+  
   const [isUserLoggedin, setIsUserLoggedin] = useState(false)
-  const [propviders, setProviders] = useState(null)
+  const [providers, setProviders] = useState(null)
   const [showDropdown, setShowDropdown] = useState (false)
-
+  
   useEffect(()=>{
     const setNewProviders = async () => {
       const response = await getProviders();
+      console.log('response ', response)
       setProviders(response)
     }
     setNewProviders();
-
+    
   }, [])
-
+  
+  console.log(providers,' is providers')
   return (
     <nav className='flex-between w-full mb-16 pt-3 '>
       <Link href='/' className='flex gap-2 flex-center'>
@@ -29,7 +33,7 @@ const Nav = () => {
       </Link>
      {/* Desktop Navigation */}
       <div className="sm:flex hidden">
-        {isUserLoggedin
+        {session?.user 
         ? (<div className='flex gap-3 md-gap-5'>
               <Link href='create-prompt' className='black_btn'>
                 Create a prompt
@@ -38,19 +42,20 @@ const Nav = () => {
                 Sign Out
               </button>
               <Link href='/profile'>
-                <Image  src='/assets/images/logo.svg' width='35' height='35'/>
+                <Image  src={session?.user.image} width='35' height='35' alt='profile'/>
               </Link>
            </div>
           )
         : (
             <>
-            {propviders && Object.values(propviders).map((provider)=>(
+            {providers && Object.values(providers).map((provider)=>(
               <button
                 type='button'
                 key={provider.name}
                 onClick={()=>signIn(provider.id)}
                 className ='black_btn'
               >
+                Sign in
               </button>
             ))}
             </>
@@ -62,10 +67,10 @@ const Nav = () => {
 
      {/* Mobile Navigation */}
      <div className='sm:hidden flex relative'>
-      {isUserLoggedin ?
+      {session?.user ?
       (<div className='flex'>
 
-        <Image  src='/assets/images/logo.svg' width='35' height='35' alt='profile' className='rounded-full' onClick={()=>setShowDropdown((prev)=> !prev)}/>
+        <Image  src={session?.user.image} width='35' height='35' alt='profile' className='rounded-full' onClick={()=>setShowDropdown((prev)=> !prev)}/>
         {showDropdown &&
         <div className='dropdown'>
           <Link
@@ -93,8 +98,8 @@ const Nav = () => {
 
         :
         <>
-        {propviders &&
-         Object.values(propviders).map((provider)=>(
+        {providers &&
+         Object.values(providers).map((provider)=>(
           <button
           type='button'
           key={provider.name}
