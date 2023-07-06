@@ -6,14 +6,29 @@ import PromptCard from "./PromptCard";
 const Feed = () => {
 
   const [prompts, setPrompts] = useState([])
+  const [copied, setcopied] = useState('')
+  const handleCopy = async (text) =>{
+    navigator.clipboard.writeText(text)
+    .then(()=> {
+      setcopied(text)
+      setTimeout(()=>{
+        setcopied('')
+      },3000)})
+    .catch((error) => console.log(error))
+
+    
+  }
   const PromptCardList = ({prompts}) => {
     return (prompts.map((prompt,index)=>(
       <PromptCard
         key={index}
         post={prompt}
+        copied={copied}
+        handleCopy={handleCopy}
         />
     )))
   }
+
 
   
 
@@ -35,7 +50,7 @@ const Feed = () => {
   },[])
 
     return (
-      <div>
+      <div className="feed">
        <PromptCardList 
           prompts = {prompts}
        />

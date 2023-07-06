@@ -4,7 +4,7 @@ import { connectToDb } from "@utils/database"
 export const GET = async () =>{
     try {
        await connectToDb()
-       const allPrompts = await Prompt.find()
+       const allPrompts = await Prompt.find().populate('creator')
        return new Response(JSON.stringify(allPrompts),{status: 200})
 
     } catch (error) {
