@@ -18,7 +18,7 @@ const PromptCard = ({post, copied, handleCopy}) => {
             <h1 className="font-santoshi font-semibold">{creator.username}</h1>
             <p>{creator.email}</p>
           </div>
-          <div onClick={()=>handleCopy(prompt)} className="copy_btn">
+          <div onClick={()=>handleCopy && handleCopy(prompt)} className="copy_btn">
             {copied === prompt 
             ?
             ( <div className="flex flex-col items-center">
@@ -38,7 +38,7 @@ const PromptCard = ({post, copied, handleCopy}) => {
         <div>
           <p className="text-sm font-inter font-semibold">{prompt} </p>
         </div>
-        <Link className="absolute right-5 bottom-5" href={`prompt/${post._id}`}>
+        <Link className="absolute right-5 bottom-5" href={`/prompt/${post._id}`}>
           <FcOpenedFolder/>
         </Link>
       </div>
