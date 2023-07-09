@@ -5,7 +5,7 @@ import {FcOpenedFolder} from 'react-icons/fc/'
 import { useState } from "react";
 import Link from "next/link";
 
-const PromptCard = ({post, copied, handleCopy}) => {
+const PromptCard = ({post, copied, handleCopy, handleTagSearch}) => {
   const{creator, prompt, tag} = post
 
     return (
@@ -37,7 +37,10 @@ const PromptCard = ({post, copied, handleCopy}) => {
 
         
         <p className="text-sm font-inter font-semibold">{prompt} </p>
-        <p className="text-xs font-inter m-5">#{tag} </p>
+        <div onClick={()=> handleTagSearch(tag)} className="cursor-pointer">
+          <p className="text-xs font-inter m-5">#{tag} </p>
+
+        </div>
 
         
 

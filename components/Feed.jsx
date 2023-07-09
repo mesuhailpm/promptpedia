@@ -21,17 +21,23 @@ const Feed = () => {
 
     
   }
-
+  
   const filterPrompts = (keyword) => {
-
+    
     setFilteredPrompts(
       prompts.filter((prompt)=> 
       prompt.creator.username === keyword ||
       prompt.tag === keyword ||
       prompt.prompt == keyword
       ))
-  }
+    }
+    
+  const handleTagSearch = (tag) => {
+    console.log('serching for', tag)
+    setSearchText(tag)
+    filterPrompts(tag)
 
+  }
   const handleSearch = (e) =>{
     
     clearTimeout(searchTimeout);
@@ -49,6 +55,7 @@ const Feed = () => {
         post={prompt}
         copied={copied}
         handleCopy={handleCopy}
+        handleTagSearch={handleTagSearch}
         />
     )))
   }
