@@ -35,9 +35,12 @@ const PromptCard = ({post, copied, handleCopy}) => {
 
         </div>
 
-        <div>
-          <p className="text-sm font-inter font-semibold">{prompt} </p>
-        </div>
+        
+        <p className="text-sm font-inter font-semibold">{prompt} </p>
+        <p className="text-xs font-inter m-5">#{tag} </p>
+
+        
+
         <Link className="absolute right-5 bottom-5" href={`/prompt/${post._id}`}>
           <FcOpenedFolder/>
         </Link>

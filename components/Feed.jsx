@@ -5,8 +5,11 @@ import PromptCard from "./PromptCard";
 
 const Feed = () => {
 
-  const [prompts, setPrompts] = useState([])
+  const [prompts, setPrompts] = useState([]) // all prompts
+  const [filteredPrompts, setFilteredPrompts] = useState ([])
   const [copied, setcopied] = useState('')
+  const [searchText, setSearchText] = useState('')
+  const [searchTimeout, setSearchTimeout] = useState(null)
   const handleCopy = async (text) =>{
     navigator.clipboard.writeText(text)
     .then(()=> {
@@ -18,8 +21,29 @@ const Feed = () => {
 
     
   }
+
+  const filterPrompts = (keyword) => {
+
+    setFilteredPrompts(
+      prompts.filter((prompt)=> 
+      prompt.creator.username === keyword ||
+      prompt.tag === keyword ||
+      prompt.prompt == keyword
+      ))
+  }
+
+  const handleSearch = (e) =>{
+    
+    clearTimeout(searchTimeout);
+    setSearchText(e.target.value);
+    
+    setSearchTimeout(
+      setTimeout(()=>{
+        filterPrompts(e.target.value);
+    },5000))
+  }
   const PromptCardList = ({prompts}) => {
-    return (prompts.map((prompt,index)=>(
+    return (prompts?.map((prompt,index)=>(
       <PromptCard
         key={index}
         post={prompt}
@@ -50,11 +74,30 @@ const Feed = () => {
   },[])
 
     return (
-      <div className="feed">
-       <PromptCardList 
-          prompts = {prompts}
-       />
-      </div>
+      <section className="feed">
+        <form className="relative w-full flex-center">
+          <input type="text" 
+            className="search_input peer"
+            placeholder="Search for tags, prompts, and users..."
+            value={searchText}
+            onChange={handleSearch}
+            required
+          />
+        </form>
+        {
+          searchText 
+          ?(
+            <PromptCardList
+              prompts={filteredPrompts} 
+            />
+          )
+          :
+            (<PromptCardList 
+              prompts = {prompts}
+            />)
+        }
+        
+      </section>
     );
   };
 

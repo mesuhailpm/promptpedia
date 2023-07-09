@@ -9,7 +9,6 @@ const Nav = () => {
   const { data: session } = useSession()
 
   
-  const [isUserLoggedin, setIsUserLoggedin] = useState(false)
   const [providers, setProviders] = useState(null)
   const [showDropdown, setShowDropdown] = useState (false)
   
@@ -93,20 +92,20 @@ const Nav = () => {
       )
 
 
-        :
-        <>
-        {providers &&
-         Object.values(providers).map((provider)=>(
-          <button
-          type='button'
-          key={provider.name}
-          onClick={()=>signIn(provider.id)}
-          className ='black_btn'
-          >
-          </button>
+      :
+      <>
+      {providers &&
+        Object.values(providers).map((provider)=>(
+        <button
+        type='button'
+        key={provider.name}
+        onClick={()=>signIn(provider.id)}
+        className ='black_btn'
+        >
+        </button>
 
-        ))}
-        </>
+      ))}
+      </>
 
       }
 
