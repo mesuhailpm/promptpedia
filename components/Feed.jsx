@@ -16,7 +16,7 @@ const Feed = () => {
       setcopied(text)
       setTimeout(()=>{
         setcopied('')
-      },3000)})
+      },5000)})
     .catch((error) => console.log(error))
 
     
@@ -40,7 +40,7 @@ const Feed = () => {
     setSearchTimeout(
       setTimeout(()=>{
         filterPrompts(e.target.value);
-    },5000))
+    },1000))
   }
   const PromptCardList = ({prompts}) => {
     return (prompts?.map((prompt,index)=>(
