@@ -4,7 +4,7 @@ const Form = ({type, handleSubmit, form, setForm, submitting}) => {
       <section className="flex flex-col w-full max-w-full flex-start">
         <h1 className="text-left head_text" >
           <span className="blue_gradient">
-            {type} a prompt 
+            {type} a prompt
           </span>
         </h1>
         <p className="desc text-left max-w-md">
@@ -26,7 +26,7 @@ const Form = ({type, handleSubmit, form, setForm, submitting}) => {
               onChange={(e)=> setForm({...form, prompt: e.target.value})}
               required
               className="form_textarea"
-              
+
               />
             </label>
 
@@ -36,7 +36,7 @@ const Form = ({type, handleSubmit, form, setForm, submitting}) => {
               </span>
               <br/>
               (#sales, #product, #creativity, #photography)
-              <input  
+              <input
                 placeholder="#tag"
                 value={form.tag}
                 onChange={(e)=> setForm({...form, tag:e.target.value})}
@@ -46,7 +46,7 @@ const Form = ({type, handleSubmit, form, setForm, submitting}) => {
             </label>
 
             <div className="self-end">
-              <button 
+              <button
                 type="submit"
                 disabled={submitting}
                 className="border-solid border-2 w-half border:none p-2 rounded-lg text-white bg-primary-orange"
@@ -55,13 +55,17 @@ const Form = ({type, handleSubmit, form, setForm, submitting}) => {
               </button>
               <button
                 type="reset"
+                onClick={()=>setForm({
+                  prompt:'',
+                  tag:''
+                     })}
                 className="border-solid border-2 w-half border:none p-2 rounded-lg text-black bg-primary-white"
               >
                 Cancel
 
               </button>
             </div>
-            
+
 
         </form>
       </section>

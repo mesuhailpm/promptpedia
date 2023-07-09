@@ -18,38 +18,43 @@ const CreatePage = () => {
         e.preventDefault()
         try {
             setSubmitting(true);
-              
+
+            const sanitizeTag = (tag) => {
+                if (tag.charAt(0)==='#'){return tag.slice(1)}
+                return tag
+            }
+
             const response = await fetch('/api/prompt/create', {
                 method: "POST",
                 body: JSON.stringify({
                     creator: session?.user.id,
                     prompt: form.prompt,
-                    tag: form.tag,
+                    tag: sanitizeTag(form.tag).trim(),
                 })
             })
             if (response.ok)
             router.push('/')
-            
+
         } catch (error) {
             console.log('prompt creation failed: ',error)
-            
+
         }finally {
             setSubmitting(false);
         }
-        
+
     }
   return (
 
     <div className="flex flex-col">
-        <Form 
+        <Form
          type='Create'
          handleSubmit={handleSubmit}
          form={form}
          setForm={setForm}
-         submitting={submitting}         
+         submitting={submitting}
 
         />
-        
+
 
     </div>
   )
