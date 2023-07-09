@@ -8,19 +8,19 @@ const Nav = () => {
 
   const { data: session } = useSession()
 
-  
+
   const [providers, setProviders] = useState(null)
   const [showDropdown, setShowDropdown] = useState (false)
-  
+
   useEffect(()=>{
     const setNewProviders = async () => {
       const response = await getProviders();
       setProviders(response)
     }
     setNewProviders();
-    
+
   }, [])
-  
+
   return (
     <nav className='flex-between w-full mb-16 pt-3 '>
       <Link href='/' className='flex gap-2 flex-center'>
@@ -29,7 +29,7 @@ const Nav = () => {
       </Link>
      {/* Desktop Navigation */}
       <div className="sm:flex hidden">
-        {session?.user 
+        {session?.user
         ? (<div className='flex gap-3 md-gap-5'>
               <Link href='create-prompt' className='black_btn'>
                 Create a prompt
@@ -38,7 +38,7 @@ const Nav = () => {
                 Sign Out
               </button>
               <Link href='/profile'>
-                <Image  src={session?.user.image} width='35' height='35' alt='profile'/>
+                <Image  src={session?.user.image} width='35' height='35' alt='profile' className='rounded-full'/>
               </Link>
            </div>
           )
