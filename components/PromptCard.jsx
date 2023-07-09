@@ -4,9 +4,13 @@ import {LiaClipboardCheckSolid} from 'react-icons/lia'
 import {FcOpenedFolder} from 'react-icons/fc/'
 import { useState } from "react";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
+import { MdEdit} from 'react-icons/md'
+import { MdEditOff} from 'react-icons/md'
 
 const PromptCard = ({post, copied, handleCopy, handleTagSearch}) => {
   const{creator, prompt, tag} = post
+  const {data: session} = useSession()
 
     return (
       <div className="prompt_card">
@@ -19,7 +23,7 @@ const PromptCard = ({post, copied, handleCopy, handleTagSearch}) => {
             <p>{creator.email}</p>
           </div>
           <div onClick={()=>handleCopy && handleCopy(prompt)} className="copy_btn">
-            {copied === prompt 
+            {copied === prompt
             ?
             ( <div className="flex flex-col items-center">
                 <p className="text-xs">Copied!</p>
@@ -28,25 +32,39 @@ const PromptCard = ({post, copied, handleCopy, handleTagSearch}) => {
             )
             :
             (
-              <PiCopySimpleLight/>  
+              <PiCopySimpleLight/>
             )}
-            
+
           </div>
 
         </div>
 
-        
+
         <p className="text-sm font-inter font-semibold">{prompt} </p>
         <div onClick={()=> handleTagSearch(tag)} className="cursor-pointer">
           <p className="text-xs font-inter m-5">#{tag} </p>
 
         </div>
 
-        
+
 
         <Link className="absolute right-5 bottom-5" href={`/prompt/${post._id}`}>
-          <FcOpenedFolder/>
+          <FcOpenedFolder title="Open"  />
         </Link>
+        { creator._id === session?.user?.id ?
+          (<Link className="absolute right-12 bottom-5" href={`/prompt/edit/${post._id}`}>
+            <MdEdit title='Edit' color='green'/>
+          </Link>)
+          :
+          (
+            <div className="absolute right-12 bottom-5">
+              <MdEditOff title='Read-only' color='red'/>
+            </div>
+
+          )
+
+
+          }
       </div>
     );
   };

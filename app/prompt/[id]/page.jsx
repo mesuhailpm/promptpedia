@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 
 const singlePost = () => {
 
-  const [id,setId] = useState('')  
+  const [id,setId] = useState('')
   const [prompt, setPrompt] = useState({})
   const [loading, setLoading] = useState(true)
   const retrieveID = () => {
@@ -13,11 +13,11 @@ const singlePost = () => {
       setId(slug)
   }
 
-  
+
   const fetchPost = async(id)=>{
     try {
-      
-      const response = await fetch(`/api/prompt/?id=${id}`) 
+
+      const response = await fetch(`/api/prompt?id=${id}`)
       const data  = await response.json()
       setPrompt(data)
       setLoading(false)
@@ -25,11 +25,11 @@ const singlePost = () => {
 
     } catch (error) {
       console.log(error)
-      
+
     }
-    
+
   }
-  
+
   useEffect( ()=>{
     retrieveID()
     if(id){
@@ -37,12 +37,12 @@ const singlePost = () => {
       fetchPost(id)
     }
   },[id])
-  
+
   if(loading) return null
-    
+
   return (
     <div>
-      <PromptCard 
+      <PromptCard
         post={prompt}
         copied=''
       />
