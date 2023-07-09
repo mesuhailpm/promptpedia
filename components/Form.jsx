@@ -45,14 +45,22 @@ const Form = ({type, handleSubmit, form, setForm, submitting}) => {
               />
             </label>
 
-
-            <button 
-              type="submit"
-              disabled={submitting}
-              className="border-solid border-2 w-half border:none p-2 rounded-lg text-white bg-primary-orange"
-              >
-                Insert idea
+            <div className="self-end">
+              <button 
+                type="submit"
+                disabled={submitting}
+                className="border-solid border-2 w-half border:none p-2 rounded-lg text-white bg-primary-orange"
+                >
+                  Insert idea
               </button>
+              <button
+                type="reset"
+                className="border-solid border-2 w-half border:none p-2 rounded-lg text-black bg-primary-white"
+              >
+                Cancel
+
+              </button>
+            </div>
             
 
         </form>
