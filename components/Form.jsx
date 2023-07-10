@@ -1,3 +1,4 @@
+import Link from "next/link";
 
 const Form = ({type, handleSubmit, form, setForm, submitting}) => {
     return (
@@ -59,11 +60,17 @@ const Form = ({type, handleSubmit, form, setForm, submitting}) => {
                   prompt:'',
                   tag:''
                      })}
-                className="border-solid border-2 w-half border:none p-2 rounded-lg text-black bg-primary-white"
+                className="border-solid border-2 w-half border:none p-2 rounded-lg text-black bg-blue-200"
+              >
+                Reset
+
+              </button>
+              <Link href='/'
+                className="border-solid border-2 w-half border:none p-2 rounded-lg text-blue bg-gray-200 "
               >
                 Cancel
 
-              </button>
+              </Link>
             </div>
 
 
