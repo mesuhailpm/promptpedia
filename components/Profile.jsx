@@ -1,6 +1,6 @@
 import PromptCard from "./PromptCard";
 
-const Profile = (user, desc, data, handleDelete, handleEdit) => {
+const Profile = ({user, desc, data, handleDelete, handleEdit}) => {
     return (
       <section className='w-full'>
         <p className='head_text text-left '>
@@ -8,20 +8,19 @@ const Profile = (user, desc, data, handleDelete, handleEdit) => {
         </p>
         <p className="desc">{desc}</p>
 
-        {/* {data?.length
+        {data?.length
         ?
-          // data.map((prompt,index) => (
-          //   <PromptCard 
-          //     key={index}
-          //     post={prompt}             
-          //   />
-          // ))
-          <>hello</>
+          data.map((prompt,index) => (
+            <PromptCard
+              key={index}
+              post={prompt}
+            />
+          ))
         :
           <p>No posts found</p>
-        } */}
-        
-        
+        }
+
+
 
     </section>
     );
