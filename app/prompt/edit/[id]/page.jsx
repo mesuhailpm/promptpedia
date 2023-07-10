@@ -66,11 +66,14 @@ const  EditPage = () => {
 
         setForm(data)
     }
+    console.log(form)
 
     useEffect (()=>{
         fetchPromptData()
 
     },[promptId])
+
+    if(session?.user?.id !== form?.creator?._id) {return <p>Unauthenticated</p>}
 
     return(
         <>
