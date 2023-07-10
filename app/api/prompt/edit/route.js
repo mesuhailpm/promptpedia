@@ -1,7 +1,6 @@
 import Prompt from '@models/Prompt';
 import { connectToDb } from '@utils/database';
 import { parse } from 'url'
-import {buffer} from 'micro'
 import mongoose from 'mongoose'
 export const PATCH = async (req) => {
     console.log(' I am trying to make edit request to mondgodb I am handling your patch request')
@@ -13,18 +12,21 @@ export const PATCH = async (req) => {
 
         await connectToDb()
 
-        const existingId = await Prompt.findById(id)
-        if (!existingId) return false;
+        const existingPrompt = await Prompt.findById(id)
+        if (!existingPrompt) return false;
 
-        const bodyBuffer = await buffer(req);
-        const formData = JSON.parse(bodyBuffer.toString());
-        console.log(formData)
+        const {creator, prompt,tag} = await req.json() // not req.body, please always remember
+
+        const promptAfterUpdate = await Prompt.findByIdAndUpdate(id,{ prompt, tag}, {new: true}) // no need to pass creator bcz it will be same for
+
+        return new Response(promptAfterUpdate,{status: 200})
+
+
+
 
 
     } catch (error) {
 
-
-
-        console.log( 'failed to handle the patch request',error)
+        return new Response(error, {status:501})
     }
 }

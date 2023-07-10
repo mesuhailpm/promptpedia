@@ -51,7 +51,7 @@ const Form = ({type, handleSubmit, form, setForm, submitting}) => {
                 disabled={submitting}
                 className="border-solid border-2 w-half border:none p-2 rounded-lg text-white bg-primary-orange"
                 >
-                  Insert idea
+                  {type === 'Create' ? 'Insert ':'Update '} idea
               </button>
               <button
                 type="reset"
