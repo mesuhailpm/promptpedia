@@ -23,7 +23,7 @@ const PromptCard = ({post, copied, handleCopy, handleTagSearch}) => {
             <p>{creator.email}</p>
           </div>
           <div onClick={()=>handleCopy && handleCopy(prompt)} className="copy_btn">
-            {copied === prompt
+            {copied && copied === prompt
             ?
             ( <div className="flex flex-col items-center">
                 <p className="text-xs">Copied!</p>
@@ -41,7 +41,7 @@ const PromptCard = ({post, copied, handleCopy, handleTagSearch}) => {
 
 
         <p className="text-sm font-inter font-semibold">{prompt} </p>
-        <div onClick={()=> handleTagSearch(tag)} className="cursor-pointer">
+        <div onClick={()=> handleTagSearch && handleTagSearch(tag)} className="cursor-pointer">
           <p className="text-xs font-inter m-5">#{tag} </p>
 
         </div>
