@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import PromptCard from "./PromptCard";
+import Loading from '@components/Loading';
 
 const Feed = () => {
 
@@ -79,6 +80,8 @@ const Feed = () => {
     fetchPosts()
 
   },[])
+
+    if(!prompts.length) { return <Loading type = 'Comment' />}
 
     return (
       <section className="feed">
