@@ -1,6 +1,9 @@
 import PromptCard from "./PromptCard";
+import Loading from '@components/Loading';
 
-const Profile = ({user, desc, data, handleDelete, handleEdit}) => {
+const Profile = ({user, desc, data, handleDelete, handleEdit, isLoading}) => {
+
+    
     return (
       <section className='w-full'>
         <p className='head_text text-left '>
@@ -8,7 +11,13 @@ const Profile = ({user, desc, data, handleDelete, handleEdit}) => {
         </p>
         <p className="desc">{desc}</p>
 
-        {data?.length
+        {isLoading &&
+        <Loading type='Comment'/>
+        }
+
+        { !isLoading && 
+        
+        (data?.length
         ?
           data.map((prompt,index) => (
             <PromptCard
@@ -17,7 +26,8 @@ const Profile = ({user, desc, data, handleDelete, handleEdit}) => {
             />
           ))
         :
-          <p>No posts found</p>
+          <p>No posts found</p>)
+
         }
 
 

@@ -1,11 +1,11 @@
 "use client"
 import Profile from '@components/Profile'
-import PromptCard from '@components/PromptCard'
 import { useSession } from 'next-auth/react'
 import React, { useEffect, useState } from 'react'
 
 const ProfilePage = () => {
     const [promptsArray, setPromptsArray] = useState([])
+    const [isLoading,setIsLoading] = useState(true)
     const {data: session} = useSession()
 
     console.log(promptsArray)
@@ -17,11 +17,13 @@ const ProfilePage = () => {
     }
 
     const fetchPrompts = async() => {
+        setIsLoading(true)
         const response = await fetch(`/api/users/${session?.user?.id}/prompts`)
         console.log(response, ' is response from backened, inside useEffect')
         const data = await response.json()
-
+        
         setPromptsArray(data)
+        setIsLoading(false)
         console.log(data, ' is data got from useEffect')
 
     }
@@ -40,6 +42,7 @@ const ProfilePage = () => {
         data={promptsArray}
         handleDelete={handleDelete}
         handleEdit={handleEdit}
+        isLoading={isLoading}
     />
   </>
   )
