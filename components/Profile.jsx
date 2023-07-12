@@ -1,7 +1,7 @@
 import PromptCard from "./PromptCard";
 import Loading from '@components/Loading';
 
-const Profile = ({user, desc, data, handleDelete, handleEdit, isLoading}) => {
+const Profile = ({user, desc, data, handleDelete, handleEdit, isLoading, parentUrl}) => {
 
     
     return (
@@ -26,6 +26,7 @@ const Profile = ({user, desc, data, handleDelete, handleEdit, isLoading}) => {
                 <PromptCard
                   key={index}
                   post={prompt}
+                  parentUrl={parentUrl}
                 />
               ))
             :

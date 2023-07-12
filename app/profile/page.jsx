@@ -43,6 +43,7 @@ const ProfilePage = () => {
         handleDelete={handleDelete}
         handleEdit={handleEdit}
         isLoading={isLoading}
+        parentUrl='/profile'
     />
   </>
   )
