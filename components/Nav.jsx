@@ -42,7 +42,7 @@ const Nav = () => {
                   <Link href='/create-prompt' className='black_btn'>
                     Create a prompt
                   </Link>
-                  <button type='button' onClick={signOut}>
+                  <button type='button' onClick={signOut} className='font-santoshi font-semibold'>
                     Sign Out
                   </button>
                   <Link href='/profile'>
