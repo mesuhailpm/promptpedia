@@ -17,16 +17,21 @@ const Profile = ({user, desc, data, handleDelete, handleEdit, isLoading}) => {
 
         { !isLoading && 
         
-        (data?.length
-        ?
-          data.map((prompt,index) => (
-            <PromptCard
-              key={index}
-              post={prompt}
-            />
-          ))
-        :
-          <p>No posts found</p>)
+        (
+          <div className="mt-16 prompt_layout">
+
+           {data?.length
+            ?
+              data.map((prompt,index) => (
+                <PromptCard
+                  key={index}
+                  post={prompt}
+                />
+              ))
+            :
+              <p>No posts found</p>}
+          </div>
+        )
 
         }
 

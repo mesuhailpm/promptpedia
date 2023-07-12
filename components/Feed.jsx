@@ -50,15 +50,18 @@ const Feed = () => {
     },1000))
   }
   const PromptCardList = ({prompts}) => {
-    return (prompts?.map((prompt,index)=>(
-      <PromptCard
-        key={index}
-        post={prompt}
-        copied={copied}
-        handleCopy={handleCopy}
-        handleTagSearch={handleTagSearch}
-        />
-    )))
+    return <div className="mt-16 prompt_layout">
+
+            {prompts?.map((prompt,index)=>(
+              <PromptCard
+                key={index}
+                post={prompt}
+                copied={copied}
+                handleCopy={handleCopy}
+                handleTagSearch={handleTagSearch}
+                />
+            ))}
+        </div>
   }
 
 
