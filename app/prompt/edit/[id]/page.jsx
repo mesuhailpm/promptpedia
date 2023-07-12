@@ -9,10 +9,12 @@ const  EditPage = () => {
     const {data: session } = useSession()
     const router = useRouter ()
     const [submitting, setSubmitting] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
     const [form, setForm] = useState({
         prompt:'',
         tag:''
     })
+    
 
     console.log(form)
 
@@ -45,7 +47,6 @@ const  EditPage = () => {
         }
 
     }
-    ///
     const [promptId, setPromptId] = useState('')
 
     const retrieveId = () => {
@@ -61,10 +62,12 @@ const  EditPage = () => {
     },[])
 
     const fetchPromptData = async () =>{
+        setIsLoading(true)
         const response = await fetch(`/api/prompt/?id=${promptId}`)
         const data = await response.json()
 
         setForm(data)
+        setIsLoading(false)
     }
     console.log(form)
 
@@ -72,8 +75,12 @@ const  EditPage = () => {
         fetchPromptData()
 
     },[promptId])
+    console.log(session?.user?.id ,' is session userID')//test
+    console.log(form?.creator?._id , 'is form userID')//test
 
-    if(session?.user?.id !== form?.creator?._id) {return <p>Unauthenticated</p>}
+    if(isLoading) return<p className="text-bold text-2xl">Loading</p>
+
+    if(session?.user?.id !== form?.creator?._id) {return <p className="text-bold text-3xl">Unauthenticated</p>}
 
     return(
         <>
