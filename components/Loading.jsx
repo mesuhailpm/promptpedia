@@ -2,7 +2,7 @@
 import React from 'react'
 import {MagnifyingGlass, InfinitySpin, Oval, Comment} from 'react-loader-spinner'
 
-const Loading = ({type}) => {
+const Loading = ({type,width, color, secondaryColor}) => {
 
     console.log('Loading type: ' + type)
     const defaultLoading = () =>{
@@ -31,7 +31,12 @@ const Loading = ({type}) => {
 
     }
     
-    return Component ? <Component /> : null
+    return Component ? <Component 
+                            width = {width && width} 
+                            color={color && color} 
+                            secondaryColor = { secondaryColor && secondaryColor }
+                        /> 
+                    : null
 }
 
 export default Loading
