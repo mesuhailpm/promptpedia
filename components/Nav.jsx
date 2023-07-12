@@ -7,8 +7,7 @@ import Loading from './Loading';
 
 const Nav = () => {
 
-  const { data: session } = useSession()
-  const { status } = useSession()
+  const { data: session, status } = useSession()
 
   const [providers, setProviders] = useState(null)
   const [showDropdown, setShowDropdown] = useState (false)
