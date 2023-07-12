@@ -33,7 +33,6 @@ const singlePost = () => {
   useEffect( ()=>{
     retrieveID()
     if(id){
-      console.log('useEffect ran')
       fetchPost(id)
     }
   },[id])
@@ -45,6 +44,8 @@ const singlePost = () => {
       <PromptCard
         post={prompt}
         copied=''
+        parent='single'
+        parentUrl='/profile/'
       />
     </div>
   )

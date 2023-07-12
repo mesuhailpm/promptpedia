@@ -7,10 +7,22 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { MdEdit} from 'react-icons/md'
 import { MdEditOff} from 'react-icons/md'
+import { useRouter } from "next/navigation";
 
-const PromptCard = ({post, copied, handleCopy, handleTagSearch}) => {
+const PromptCard = ({post, copied, handleCopy, handleTagSearch, parent, parentUrl}) => {
   const{creator, prompt, tag} = post
   const {data: session} = useSession()
+  const router = useRouter()
+
+  const handleDelete = async() => {
+    if (confirm('Are you sure you want to delete this?'))
+    {
+      const response = await fetch(`/api/prompt/delete/${post._id}`,{method: 'DELETE'})
+      if(response.ok) router.push(parentUrl)
+    }
+  
+
+  }
 
     return (
       <div className="prompt_card">
@@ -26,7 +38,7 @@ const PromptCard = ({post, copied, handleCopy, handleTagSearch}) => {
             {copied && copied === prompt
             ?
             ( <div className="flex flex-col items-center">
-                <p className="text-xs">Copied!</p>
+                <p className="text-xs font-inter font-bold">Copied!</p>
                 <LiaClipboardCheckSolid />
               </div>
             )
@@ -48,20 +60,37 @@ const PromptCard = ({post, copied, handleCopy, handleTagSearch}) => {
 
 
 
-        <Link className="absolute right-5 bottom-5" href={`/prompt/${post._id}`}>
-          <FcOpenedFolder title="Open"  />
-        </Link>
-        { creator._id === session?.user?.id ?
-          (<Link className="absolute right-12 bottom-5" href={`/prompt/edit/${post._id}`}>
+        { (!parent ||  parent !== 'single') && <Link className="absolute right-5 bottom-5" href={`/prompt/${post._id}`}>
+          <FcOpenedFolder title="Open"  /> 
+        </Link>}
+
+
+        { ((parent && parent === 'single') && (creator._id === session?.user?.id)) &&
+          <div className="m-5 flex justify-center items-center gap-4 border-t border-gray-100 t-3">
+            <Link href={`/prompt/edit/${post._id}`} className="px-5 font-santoshi text-amber-300	 p-2 bg-green-500 border border-2 border-white rounded-lg"> Edit </Link>
+            <button onClick={handleDelete} className="font-santoshi p-2 bg-red-500 text-white border border-2 border-white rounded-lg"> Delete </button>  
+          </div>
+           }
+
+         { (!parent) &&
+           (creator._id === session?.user?.id  ?
+          (<Link 
+              className="absolute right-12 bottom-5" 
+              // className = {`aboslute ${parent && parent === 'single'? 'right-12 bottom-5': 'right-12 bottom-5'} `} //test
+              href={`/prompt/edit/${post._id}`}> 
             <MdEdit title='Edit' color='green'/>
           </Link>)
           :
           (
-            <div className="absolute right-12 bottom-5">
+            <div 
+            // className = {`aboslute ${parent && parent === 'single'? 'right-12 bottom-5': ''} `} //test
+            className="absolute right-12 bottom-5" 
+             >
+              
               <MdEditOff title='Read-only' color='red'/>
             </div>
 
-          )
+          ))
 
 
           }
