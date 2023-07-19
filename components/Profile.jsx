@@ -7,7 +7,7 @@ const Profile = ({user, desc, data, handleDelete, handleEdit, isLoading, parentU
     return (
       <section className='w-full'>
         <p className='head_text text-left '>
-            <span className='blue_gradient'>Profile page</span>
+            <span className='blue_gradient'>{user === 'My'? 'My ' : `${user}'s `}Profile page</span>
         </p>
         <p className="desc">{desc}</p>
 
