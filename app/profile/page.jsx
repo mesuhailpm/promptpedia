@@ -38,7 +38,7 @@ const ProfilePage = () => {
   return (<>
     <Profile
         user='My'
-        desc='Welcome to your personalized profile page. now you can edit your or delete your posts here.'
+        desc='Welcome to your personalized profile page. now you can edit or delete your posts here.'
         data={promptsArray}
         handleDelete={handleDelete}
         handleEdit={handleEdit}
