@@ -1,7 +1,10 @@
+import loading from "@app/loading";
 import PromptCard from "./PromptCard";
 import Loading from '@components/Loading';
 
 const Profile = ({user, desc, data, handleDelete, handleEdit, isLoading, parentUrl}) => {
+
+    if (isLoading) return <Loading/>
 
     
     return (
@@ -22,13 +25,13 @@ const Profile = ({user, desc, data, handleDelete, handleEdit, isLoading, parentU
 
            {data?.length
             ?
-              data.map((prompt,index) => (
-                <PromptCard
+              data.map((prompt,index) => {
+                if (index < data.length-1)return <PromptCard
                   key={index}
                   post={prompt}
                   parentUrl={parentUrl}
                 />
-              ))
+              })
             :
               <p>No posts found</p>}
           </div>

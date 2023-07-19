@@ -27,9 +27,9 @@ const PromptCard = ({post, copied, handleCopy, handleTagSearch, parent, parentUr
     return (
       <div className="prompt_card">
         <div className="flex justify-between items-start gap-5">
-          <div className="flex flex-col">
+          <Link href={`/profile/${creator?._id}`} className="flex flex-col">
             <Image src={creator.image} alt='user-profile' width={30} height={30} className="rounded-full" />
-          </div>
+          </Link>
           <div>
             <h1 className="font-santoshi font-semibold">{creator.username}</h1>
             <p>{creator.email}</p>

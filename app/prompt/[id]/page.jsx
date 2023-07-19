@@ -1,54 +1,44 @@
-'use client'
-import PromptCard from '@components/PromptCard'
-import React, { useEffect, useState } from 'react'
+"use client";
+import PromptCard from "@components/PromptCard";
+import { useParams } from "next/navigation";
+import React, { useEffect, useState } from "react";
 
 const singlePost = () => {
+  const [prompt, setPrompt] = useState({});
+  const [loading, setLoading] = useState(true);
 
-  const [id,setId] = useState('')
-  const [prompt, setPrompt] = useState({})
-  const [loading, setLoading] = useState(true)
-  const retrieveID = () => {
-      const pathSegments = window.location.pathname.split('/');
-      const slug =  pathSegments[pathSegments.length - 1]
-      setId(slug)
-  }
+  const { id } = useParams();
 
-
-  const fetchPost = async(id)=>{
+  const fetchPost = async (id) => {
     try {
-
-      const response = await fetch(`/api/prompt?id=${id}`)
-      const data  = await response.json()
-      setPrompt(data)
-      setLoading(false)
-      console.log(data)
-
+      const response = await fetch(`/api/prompt?id=${id}`);
+      const data = await response.json();
+      setPrompt(data);
+      setLoading(false);
+      console.log(data);
     } catch (error) {
-      console.log(error)
-
+      console.log(error);
     }
+  };
 
-  }
-
-  useEffect( ()=>{
-    retrieveID()
-    if(id){
-      fetchPost(id)
+  useEffect(() => {
+    if (id) {
+      fetchPost(id);
     }
-  },[id])
+  }, [id]);
 
-  if(loading) return null
+  if (loading) return null;
 
   return (
     <div>
       <PromptCard
         post={prompt}
-        copied=''
-        parent='single'
-        parentUrl='/profile/'
+        copied=""
+        parent="single"
+        parentUrl="/profile/"
       />
     </div>
-  )
-}
+  );
+};
 
-export default singlePost
+export default singlePost;
