@@ -6,6 +6,17 @@ import React, { useEffect, useState } from "react";
 const singlePost = () => {
   const [prompt, setPrompt] = useState({});
   const [loading, setLoading] = useState(true);
+  const [copied, setcopied] = useState('')
+   const handleCopy = async (text) =>{
+    navigator.clipboard.writeText(text)
+    .then(()=> {
+      setcopied(text)
+      setTimeout(()=>{
+        setcopied('')
+      },5000)})
+    .catch((error) => console.log(error))
+    }
+    
 
   const { id } = useParams();
 
@@ -33,9 +44,10 @@ const singlePost = () => {
     <div>
       <PromptCard
         post={prompt}
-        copied=""
         parent="single"
         parentUrl="/profile/"
+        copied={copied}
+        handleCopy={handleCopy}
       />
     </div>
   );
