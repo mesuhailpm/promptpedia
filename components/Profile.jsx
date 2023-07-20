@@ -25,13 +25,14 @@ const Profile = ({user, desc, data, handleDelete, handleEdit, isLoading, parentU
 
            {data?.length
             ?
-              data.map((prompt,index) => {
-                if (index < data.length-1)return <PromptCard
-                  key={index}
-                  post={prompt}
-                  parentUrl={parentUrl}
-                />
-              })
+              data.map((prompt,index) =>(
+                <PromptCard
+                    key={index}
+                    post={prompt}
+                    parentUrl={parentUrl}
+                  />
+                
+              ))
             :
               <p>No posts found</p>}
           </div>
