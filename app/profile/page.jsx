@@ -29,8 +29,10 @@ const ProfilePage = () => {
     }
     useEffect(()=>{
         if (session?.user?.id) {
-          console.log('starting useEffect')
         fetchPrompts()
+        }
+        else {
+          setIsLoading(false)
         }
 
     },[session?.user?.id])
