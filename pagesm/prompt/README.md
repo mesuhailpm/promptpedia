@@ -1,1 +1,0 @@
-might be deleted created to test as next.js documentation saying to write components that need to be rendered dynamically on the pages folder it seems not to be correct.
