@@ -5,7 +5,7 @@
 
 
 ### Awaited feafures
-    delete functionality
+    delete functionality -> completed
     
 
 
