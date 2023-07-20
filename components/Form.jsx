@@ -57,6 +57,7 @@ const Form = ({type, handleSubmit, form, setForm, submitting}) => {
               <button
                 type="reset"
                 onClick={()=>setForm({
+                  ...form,
                   prompt:'',
                   tag:''
                      })}
