@@ -11,13 +11,13 @@ const  EditPage = () => {
     const [promptId, setPromptId] = useState('')
     const [submitting, setSubmitting] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
+    const {id} = useParams() 
     const [form, setForm] = useState({
         prompt:'',
         tag:''
     })
     
 
-    console.log(form)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -49,8 +49,6 @@ const  EditPage = () => {
 
     }
 
-    const {id} = useParams() 
-    console.log(id)
 
     useEffect(()=>{
         setPromptId(id)
@@ -70,8 +68,6 @@ const  EditPage = () => {
        if(promptId) fetchPromptData()
 
     },[promptId])
-    console.log(session?.user?.id ,' is session userID')//test
-    console.log(form?.creator?._id , 'is form userID')//test
 
     if(isLoading) return<p className="text-bold text-2xl">Loading</p>
 

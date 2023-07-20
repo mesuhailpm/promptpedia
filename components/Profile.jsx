@@ -1,4 +1,3 @@
-// 'use client'
 import loading from "@app/loading";
 import PromptCard from "./PromptCard";
 import Loading from '@components/Loading';

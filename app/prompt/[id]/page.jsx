@@ -26,7 +26,6 @@ const singlePost = () => {
       const data = await response.json();
       setPrompt(data);
       setLoading(false);
-      console.log(data);
     } catch (error) {
       console.log(error);
     }

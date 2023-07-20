@@ -4,7 +4,6 @@ import {MagnifyingGlass, InfinitySpin, Oval, Comment} from 'react-loader-spinner
 
 const Loading = ({type,width, color, secondaryColor}) => {
 
-    console.log('Loading type: ' + type)
     const defaultLoading = () =>{
         return (<>Wait, we are Loading...</>)
     }

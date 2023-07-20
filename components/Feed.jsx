@@ -34,7 +34,6 @@ const Feed = () => {
   };
 
   const handleTagSearch = (tag) => {
-    console.log("serching for", tag);
     setSearchText(tag);
     filterPrompts(tag);
   };

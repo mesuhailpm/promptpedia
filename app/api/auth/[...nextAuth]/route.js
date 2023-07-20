@@ -53,4 +53,3 @@ const handler = NextAuthHandler (
 )
 
 export { handler as GET, handler as POST, handler as PATCH }
-//added PATCH for test

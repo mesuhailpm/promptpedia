@@ -101,14 +101,12 @@ const PromptCard = ({
         (creator._id === session?.user?.id ? (
           <Link
             className="absolute right-12 bottom-5"
-            // className = {`aboslute ${parent && parent === 'single'? 'right-12 bottom-5': 'right-12 bottom-5'} `} //test
             href={`/prompt/edit/${post._id}`}
           >
             <MdEdit title="Edit" color="green" />
           </Link>
         ) : (
           <div
-            // className = {`aboslute ${parent && parent === 'single'? 'right-12 bottom-5': ''} `} //test
             className="absolute right-12 bottom-5"
           >
             <MdEditOff title="Read-only" color="red" />
