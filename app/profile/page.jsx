@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react'
 
 const ProfilePage = () => {
     const [promptsArray, setPromptsArray] = useState([])
+    const [profileUsername, setProfileUsername] = useState('')
     const [isLoading,setIsLoading] = useState(true)
     const {data: session} = useSession()
 
@@ -22,10 +23,9 @@ const ProfilePage = () => {
         console.log(response, ' is response from backened, inside useEffect')
         const data = await response.json()
         
-        setPromptsArray(data)
+        setPromptsArray(data.posts)
+        setProfileUsername(data.username)
         setIsLoading(false)
-        console.log(data, ' is data got from useEffect')
-
     }
     useEffect(()=>{
         if (session?.user?.id) {

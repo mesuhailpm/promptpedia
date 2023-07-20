@@ -2,12 +2,13 @@
 
 import Form from "@components/Form"
 import { useSession } from "next-auth/react"
-import { useRouter } from "next/navigation"
+import { useParams, useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 
 const  EditPage = () => {
     const {data: session } = useSession()
     const router = useRouter ()
+    const [promptId, setPromptId] = useState('')
     const [submitting, setSubmitting] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
     const [form, setForm] = useState({
@@ -47,17 +48,12 @@ const  EditPage = () => {
         }
 
     }
-    const [promptId, setPromptId] = useState('')
 
-    const retrieveId = () => {
-        const path = window.location.pathname
-        const pathArray = path.split('/')
-        const slug = pathArray[pathArray.length-1]
-        return slug
-    }
+    const {id} = useParams() 
+    console.log(id)
 
     useEffect(()=>{
-        setPromptId(retrieveId())
+        setPromptId(id)
 
     },[])
 
@@ -69,10 +65,9 @@ const  EditPage = () => {
         setForm(data)
         setIsLoading(false)
     }
-    console.log(form)
 
     useEffect (()=>{
-        fetchPromptData()
+       if(promptId) fetchPromptData()
 
     },[promptId])
     console.log(session?.user?.id ,' is session userID')//test

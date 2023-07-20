@@ -7,6 +7,7 @@ import { useSession } from "next-auth/react"
 
 const SingleProfile = () => {
     const [promptsArray, setPromptsArray] = useState([])
+    const [profileUsername, setProfileUsername] = useState('')
     const handleDelete = async() =>{
         
     }
@@ -21,7 +22,8 @@ const SingleProfile = () => {
         setIsLoading(true)
         const response = await fetch(`/api/users/${id}/prompts`)
         const data = await response.json()
-        setPromptsArray(data)
+        setPromptsArray(data.posts)
+        setProfileUsername(data.username)
         console.log(data);
         setIsLoading(false)
     }
@@ -33,8 +35,8 @@ const SingleProfile = () => {
     return (
     <div>
         <Profile
-        user={`${session?.user?.id === id ?'My' :promptsArray[promptsArray.length-1] }`}
-        desc = {`${session?.user?.id === id ?'Welcome to your personalized profile page. now you can edit or delete your posts here.' : 'This is '+promptsArray[promptsArray.length-1]+'s personalized profile page' }`}
+        user={`${session?.user?.id === id ?'My' : profileUsername }`}
+        desc = {`${session?.user?.id === id ?'Welcome to your personalized profile page. now you can edit or delete your posts here.' : 'This is '+profileUsername+'s personalized profile page' }`}
         data={promptsArray}
         handleDelete={handleDelete}
         handleEdit={handleEdit}
