@@ -33,11 +33,8 @@ const SingleProfile = () => {
     return (
     <div>
         <Profile
-        // user={promptsArray?.[0]?.creator?.username}
         user={`${session?.user?.id === id ?'My' :promptsArray[promptsArray.length-1] }`}
         desc = {`${session?.user?.id === id ?'Welcome to your personalized profile page. now you can edit or delete your posts here.' : 'This is '+promptsArray[promptsArray.length-1]+'s personalized profile page' }`}
-
-        // desc={`Welcome to ${promptsArray[promptsArray.length-1]}'s personalized profile page.`}
         data={promptsArray}
         handleDelete={handleDelete}
         handleEdit={handleEdit}
