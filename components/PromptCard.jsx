@@ -64,7 +64,7 @@ const PromptCard = ({
       <p className="text-sm font-inter font-semibold">{prompt} </p>
       <div
         onClick={() => handleTagSearch && handleTagSearch(tag)}
-        className="cursor-pointer w-fit"
+        className={`w-fit ${handleTagSearch && 'hover:underline cursor-pointer '}`}
       >
         <p className="text-xs font-inter m-5 ">#{tag} </p>
       </div>
