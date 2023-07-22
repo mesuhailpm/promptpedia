@@ -25,8 +25,7 @@ const Nav = () => {
   return (
     <nav className='flex-between w-full mb-16 pt-3 '>
       <Link href='/' className='flex gap-2 flex-center'>
-        <Image src='/assets/images/logo.svg' width='30' height='30' className='object-contain' alt='logo' />
-        <p className='logo_text'>Promptpedia</p>
+        <Image src='/assets/images/logoo.png' width='300' height='100' className='object-contain' alt='logo' />
       </Link>
 
       {status === 'loading' ? <Loading type='Oval' width= '40' color='#f5ee25' secondaryColor='#f54025'/>
