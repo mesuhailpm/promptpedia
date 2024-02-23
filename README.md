@@ -1,3 +1,5 @@
+### hosting
+for nextauth to work correctly for Google please update redirect URI on Google console every time host address chages
 ### Inspired from 
     youtube: https://www.youtube.com/watch?v=wm5gMKuwSYk
 
